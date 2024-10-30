@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User,TestResult
+from .models import User,TestResult,AnalysisResult
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
 
@@ -18,7 +18,6 @@ class TestResultSerialzer(serializers.ModelSerializer):
         
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     uuid=serializers.CharField(required=False)
-
     def validate(self, attrs):
         request=self.context.get('request')
         requires_uuid=request.GET.get('requires_uuid','').lower()=='true'
@@ -77,3 +76,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
             return data
 
+class AnalysisResultSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=AnalysisResult
+        fields='__all__'

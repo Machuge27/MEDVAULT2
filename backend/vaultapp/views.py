@@ -3,8 +3,8 @@ from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializer import UserSerializer,CustomTokenObtainPairSerializer,TestResultSerialzer
-from .models import User,TestResult
+from .serializer import UserSerializer,CustomTokenObtainPairSerializer,TestResultSerialzer,AnalysisResultSerializer
+from .models import User,TestResult,AnalysisResult
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 
@@ -56,3 +56,21 @@ class PostResults(generics.ListCreateAPIView):
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+class AnalysisResults(generics.ListCreateAPIView):
+    permission_classes=[IsAuthenticated]
+    serializer_class=AnalysisResultSerializer
+    queryset=AnalysisResult.objects.all()
+
+    def post(self,request):
+        data={ 'user':request.user.id,
+             'testName': request.data['testName'],
+             'value':request.data['value']
+              }
+        print(data)
+        serializer=self.get_serializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            # perform analysis here
+            return Response({'data': serializer.data},status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)

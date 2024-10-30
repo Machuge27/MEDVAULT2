@@ -1,12 +1,31 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import '../css/HealthAnalysis.css';
+import InformationOverlay from './../components/InformationOverlay';
+import { Api } from '../Api';
 
 const HealthAnalysis= () => {
   const heartRateChartRef = useRef(null);
   const bloodPressureChartRef = useRef(null);
   const heartRateInstance = useRef(null);
   const bloodPressureInstance = useRef(null);
+  const [isOpen,setIsOpen]=useState(false)
+  const [receivedData,setReceivedData]=useState('')
+
+ function onClose(){
+   setIsOpen(false)
+ }
+
+ function onSubmit({ selectedOption, inputValue }){
+
+  try{
+    const res=Api.post('api/post/analysis/results/',{'testName':selectedOption,'value':inputValue})
+    console.log(res)
+  }catch(error){
+
+    console.log('an error occured',error)
+  }
+ }
 
   useEffect(() => {
     // Destroy existing chart instances
@@ -18,6 +37,8 @@ const HealthAnalysis= () => {
     }
 
     // Create Heart Rate Chart
+    if(receivedData!=='' ){
+      
     if (heartRateChartRef.current) {
       const ctx = heartRateChartRef.current.getContext('2d');
       heartRateInstance.current = new Chart(ctx, {
@@ -46,6 +67,7 @@ const HealthAnalysis= () => {
         }
       });
     }
+  
 
     // Create Blood Pressure Chart
     if (bloodPressureChartRef.current) {
@@ -76,7 +98,7 @@ const HealthAnalysis= () => {
         }
       });
     }
-
+  
     // Cleanup function
     return () => {
       if (heartRateInstance.current) {
@@ -85,7 +107,7 @@ const HealthAnalysis= () => {
       if (bloodPressureInstance.current) {
         bloodPressureInstance.current.destroy();
       }
-    };
+    }};
   }, []); // Empty dependency array means this effect runs once on mount
 
   return (
@@ -100,22 +122,36 @@ const HealthAnalysis= () => {
 
       {/* Main Content */}
       <main className="main container">
+
+        <InformationOverlay isOpen={isOpen} onClose={onClose} onSubmit={onSubmit} />
+
         {/* Patient Information */}
         <div className="card">
+
+          <div className='flex flex-row items-center justify-between'>
           <h2>Patient Overview</h2>
+          <button className='analysisBtn ' onClick={()=>setIsOpen(true)}>
+            Add
+            </button>
+          </div>
+
           <div className="patient-grid">
+
             <div className="patient-info">
               <label>Patient Name:</label>
               <p>John Doe</p>
             </div>
+
             <div className="patient-info">
               <label>Age:</label>
               <p>39 years</p>
             </div>
+
             <div className="patient-info">
               <label>Last Checkup:</label>
               <p>10/15/2024</p>
             </div>
+
           </div>
         </div>
 

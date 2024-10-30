@@ -227,3 +227,15 @@
     height: 50px;
     background-color: black;
   }
+  .analysisBtn{
+    background-color: #059669;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+  }

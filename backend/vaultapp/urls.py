@@ -8,6 +8,7 @@ urlpatterns = [
     path('api/token/', views.CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path("api/token/refresh/", jwt_views.TokenRefreshView.as_view(), name="token_refresh"),
     path("api/register/", views.CreateUser.as_view(), name="register"),
-    path("api/post/results/",views.PostResults.as_view(),name="postResults")
+    path("api/post/results/",views.PostResults.as_view(),name="postResults"),
+    path('api/post/analysis/results/',views.AnalysisResults.as_view(),name="AnalysisResults")
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

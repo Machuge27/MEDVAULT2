@@ -1,0 +1,173 @@
+/* TestResultForm.css */
+.test-result-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.test-result-container h1 {
+    color: #2e7d32;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.test-result-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid #c8e6c9;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+}
+
+.file-upload-container {
+    position: relative;
+}
+
+.file-input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-upload-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-upload-button:hover {
+    background-color: #388e3c;
+}
+
+.attachments-list {
+    background-color: #f1f8e9;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.attachments-list h3 {
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+}
+
+.attachments-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.attachments-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: white;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #c8e6c9;
+}
+
+.remove-file {
+    background: none;
+    border: none;
+    color: #e57373;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+}
+
+.remove-file:hover {
+    color: #f44336;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.submit-button,
+.reset-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button {
+    background-color: #2e7d32;
+    color: white;
+    flex: 2;
+}
+
+.submit-button:hover {
+    background-color: #1b5e20;
+}
+
+.reset-button {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    flex: 1;
+}
+
+.reset-button:hover {
+    background-color: #c8e6c9;
+}
+
+@media (max-width: 600px) {
+    .test-result-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .submit-button,
+    .reset-button {
+        width: 100%;
+    }
+}
+

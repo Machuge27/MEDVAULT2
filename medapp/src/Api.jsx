@@ -1,7 +1,11 @@
 import axios from 'axios'
 
 export const Api=axios.create({
-    baseURL:'http://192.168.100.38:8000/'
+    baseURL:'http://192.168.100.34:8000/',
+    headers: {
+        'Content-Type': 'multipart/form-data',
+        'Accept': 'application/json'
+    }
 
 })
 
@@ -20,6 +24,7 @@ Api.interceptors.request.use(
 
 Api.interceptors.response.use(
     function(response){
+        console.log(response.data)
         return response.data;
     },
 

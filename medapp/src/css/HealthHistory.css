@@ -1,0 +1,275 @@
+/* HealthHistory.css */
+.header {
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111827;
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .timeframe-filter {
+    border-radius: 0.375rem;
+    border: 1px solid #D1D5DB;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 0.5rem 1rem;
+  }
+  
+  .export-button {
+    background-color: #16a34a;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s;
+  }
+  
+  .export-button:hover {
+    background-color: #15803d;
+  }
+  
+  .main-content {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .summary-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .summary-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #111827;
+  }
+  
+  .card-content {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .vital-item, .appointment-item {
+    font-size: 0.875rem;
+    color: #4B5563;
+  }
+  
+  .vital-item span {
+    color: #111827;
+  }
+  
+  .update-date {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #6B7280;
+  }
+  
+  .action-link {
+    margin-top: 1rem;
+    color: #16a34a;
+    font-size: 0.875rem;
+  }
+  
+  .action-link:hover {
+    color: #15803d;
+  }
+  
+  .timeline-container {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .timeline-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  
+  .timeline-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .timeline-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #111827;
+  }
+  
+  .timeline-filters {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .filter-button {
+    font-size: 0.875rem;
+    color: #16a34a;
+  }
+  
+  .filter-button:hover {
+    color: #15803d;
+  }
+  
+  .timeline-entries {
+    padding: 1rem 1.5rem;
+  }
+  
+  .timeline-entry {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .entry-date {
+    flex-shrink: 0;
+    width: 3rem;
+    font-size: 0.875rem;
+    color: #6B7280;
+  }
+  
+  .entry-content {
+    flex: 1;
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .entry-content.visit {
+    background-color: #dcfce7;
+  }
+  
+  .entry-content.lab {
+    background-color: #f0fdf4;
+  }
+  
+  .entry-content.medication {
+    background-color: #f7fee7;
+  }
+  
+  .entry-content.vaccine {
+    background-color: #fefce8;
+  }
+  
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .entry-header h4 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #15803d;
+  }
+  
+  .entry-tag {
+    font-size: 0.75rem;
+    color: #16a34a;
+    background-color: #bbf7d0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+  }
+  
+  .entry-description {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #166534;
+  }
+  
+  .entry-actions {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .entry-actions button {
+    font-size: 0.75rem;
+    color: #16a34a;
+  }
+  
+  .entry-actions button:hover {
+    color: #15803d;
+  }
+  
+  .lab-results {
+    margin-top: 0.5rem;
+  }
+  
+  .lab-values {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .lab-label {
+    color: #16a34a;
+    font-size: 0.875rem;
+  }
+  
+  .lab-value {
+    color: #15803d;
+    font-size: 0.875rem;
+  }
+  
+  .prescribed-by,
+  .administered-by {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: #16a34a;
+  }
+  
+  .load-more {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #E5E7EB;
+    text-align: center;
+  }
+  
+  .load-more-button {
+    width: 100%;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6B7280;
+    transition: color 0.2s;
+  }
+  
+  .load-more-button:hover {
+    color: #4B5563;
+  }

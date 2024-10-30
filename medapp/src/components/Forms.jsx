@@ -26,7 +26,7 @@ const Form = () => {
         justifyContent: 'center',
     }
     const input= {
-        height: 20,
+        height: 30,
         width: '90%',
         borderColor: 'gray',
         borderWidth: 1,
@@ -55,8 +55,8 @@ const Form = () => {
         width: 120,
         margin: 'auto',
         border: 'none',
+        cursor: 'pointer',
     }
-
     const parentBtn={
         display:'flex',
         alignItems:'center',
@@ -79,7 +79,7 @@ const Form = () => {
         username: '',email:'',password:''
     })
     const [isLogin,setLogin]=useState(true)
-    
+    const [loading,setLoading]=useState(false)
     const navigate=useNavigate()
     
     const handleChange=(e)=>{
@@ -90,38 +90,40 @@ const Form = () => {
             }
         })
     }
-    async function handleSubmit(e){
-        e.preventDefault()
-        try{
-        if(isLogin && form.username.trim()!=='' && form.email.trim()!==''){
-          
-           const res=await Api.post('api/token',{username:form.username,email:form.email})
-           localStorage.setItem('refresh',res.data.refresh)
-           localStorage.setItem('access',res.data.access)
-           navigate('/')
+    async function handleSubmit(e) {
+        e.preventDefault();  // Prevent the default form submission.
+        try {
+          if (isLogin && form.username.trim() !== '' && form.password.trim() !== '') {
+            setLoading(true);
+            const res = await Api.post('api/token/', { username: form.username, password: form.password });
+            
+            localStorage.setItem('refresh', res.refresh);
+            localStorage.setItem('access', res.access);
+            localStorage.setItem('email', res.email);
+            localStorage.setItem('username', res.username);
+            localStorage.setItem('uuid', res.uuid);
+            setLoading(false);  // Reset loading state.
+            navigate('/');
+          } else if (!isLogin && form.username.trim() !== '' && form.email.trim() !== '' && form.password.trim() !== '') {
+            setLoading(true);
+            const res = await Api.post('api/register/', {
+              username: form.username,
+              email: form.email,
+              password: form.password
+            });
+            localStorage.setItem('access', res.access);
+            localStorage.setItem('refresh', res.refresh);
+            setLoading(false);  // Reset loading state.
+            navigate('/');
+          }
+        } catch (error) {
+          setLoading(false);  // Ensure loading is false on error.
+          console.error(error);
         }
-        else if (!isLogin && form.username.trim()!=='' && form.email.trim()!=='' && form.password.trim()!=='') {
-          // Handle registration logic
-       
-          const res = await Api.post('api/register', {
-            username: form.username,
-            email: form.email,
-            password: form.password
-          });
-          localStorage.setItem('access', res.access);
-          localStorage.setItem('refresh', res.refresh);
-          navigate("/");
-        
-     
       }
-    }catch(error){
-        console.log(error)
-  
-      }
-    }
-
     const toggleForm=()=>{
         setLogin(prev=>!prev)
+        console.log(loading)
     }
     return (
         <div style={container}>
@@ -129,7 +131,7 @@ const Form = () => {
             <p style={title}>{isLogin?'Login':'Sign-Up'}</p>
 
             <label style={label}>Username:
-            <input style={input} placeholder='username' name="username" type='text' value={form.username} onChange={handleChange}/>
+            <input style={input}  placeholder='username' name="username" type='text' value={form.username} onChange={handleChange}/>
             </label>
             {!isLogin&&   
             <label style={label}>Email:
@@ -143,7 +145,14 @@ const Form = () => {
             
             
             
-            <button style={button} onClick={handleSubmit}>Submit</button>
+            {loading?<div class="fa-3x self-center">
+                <i class="fas fa-spinner fa-spin fa-xsm"  ></i>
+                   </div>:
+            <button style={button} onClick={handleSubmit}>
+                Submit
+            </button>
+            }
+
             <div style={parentBtn}>
             <h5>Already have an account? </h5><span>
              {isLogin ?   

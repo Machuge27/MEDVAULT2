@@ -24,6 +24,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         username = attrs.get('username')
         password = attrs.get('password')
         uuid=attrs.get('uuid')
+        print(password,username)
 
         if requires_uuid:
             if not uuid:

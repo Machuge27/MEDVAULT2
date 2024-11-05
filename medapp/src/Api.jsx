@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const Api=axios.create({
-    baseURL:'http://192.168.100.34:8000/',
+    baseURL:'http://192.168.73.255:8000/',
     headers: {
         'Content-Type': 'multipart/form-data',
         'Accept': 'application/json'
